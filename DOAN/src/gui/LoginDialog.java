@@ -161,7 +161,7 @@ public class LoginDialog extends JFrame {
     // 5. Nút Đăng nhập
     btnLogin = new JButton("ĐĂNG NHẬP");
     btnLogin.setFont(new Font("Segoe UI", Font.BOLD, 18));
-    btnLogin.setForeground(Color.WHITE);
+    btnLogin.setForeground(Color.BLUE);
     btnLogin.setBackground(COLOR_SGU_BLUE);
     btnLogin.setCursor(new Cursor(Cursor.HAND_CURSOR));
     btnLogin.setFocusPainted(false);

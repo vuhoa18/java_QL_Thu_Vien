@@ -138,7 +138,7 @@ public class MainFrame extends JFrame {
 
         // Add các Panel giả lập
         pnlContent.add(createDummyPanel("TRANG CHỦ", Color.WHITE), "HOME");
-        pnlContent.add(createDummyPanel("QUẢN LÝ SÁCH", new Color(240, 248, 255)), "SACH");
+        pnlContent.add(new QuanLySachPanel(), "SACH");       
         pnlContent.add(createDummyPanel("QUẢN LÝ ĐỘC GIẢ", new Color(255, 245, 238)), "DOCGIA");
         pnlContent.add(createDummyPanel("MƯỢN - TRẢ SÁCH", new Color(240, 255, 240)), "MUONTRA");
         pnlContent.add(createDummyPanel("NHẬP HÀNG", Color.LIGHT_GRAY), "NHAPHANG");
