@@ -12,6 +12,10 @@ import java.awt.*;
 import java.awt.event.*;
 import java.util.ArrayList;
 import javax.swing.*;
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
+=======
+import javax.swing.border.EmptyBorder;
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
 import javax.swing.border.TitledBorder;
 import javax.swing.table.DefaultTableModel;
 import util.Formatter;
@@ -29,6 +33,7 @@ public class QuanLySachPanel extends JPanel {
 
     public QuanLySachPanel() {
         initComponents();
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         loadDuLieuLenComboBox(); // Đổ dữ liệu vào ComboBox trước
         loadDataLenBang(sachBUS.getList()); // Đổ danh sách Sách lên bảng
     }
@@ -53,28 +58,99 @@ public class QuanLySachPanel extends JPanel {
         pnlSearch.add(txtTimKiem);
         btnTimKiemNC = new JButton("Tìm nâng cao");
         pnlSearch.add(btnTimKiemNC);
+=======
+        loadDuLieuLenComboBox(); 
+        loadDataLenBang(sachBUS.getList()); 
+    }
+
+    private void initComponents() {
+        setLayout(new BorderLayout(10, 10)); // Thêm khoảng cách giữa các phần
+        setBackground(Color.WHITE);
+        setBorder(new EmptyBorder(10, 10, 10, 10)); // Padding viền ngoài cùng
+
+        // --- 1. TIÊU ĐỀ ---
+        JLabel lblTitle = new JLabel("QUẢN LÝ KHO SÁCH");
+        lblTitle.setFont(new Font("Segoe UI", Font.BOLD, 26));
+        lblTitle.setForeground(new Color(25, 118, 210));
+        lblTitle.setHorizontalAlignment(SwingConstants.CENTER);
+        lblTitle.setBorder(new EmptyBorder(10, 0, 20, 0));
+        add(lblTitle, BorderLayout.NORTH);
+
+        // --- 2. BẢNG VÀ TÌM KIẾM (GIỮA) ---
+        JPanel pnlCenter = new JPanel(new BorderLayout(0, 10));
+        pnlCenter.setBackground(Color.WHITE);
+        
+        JPanel pnlSearch = new JPanel(new FlowLayout(FlowLayout.LEFT, 10, 0));
+        pnlSearch.setBackground(Color.WHITE);
+        JLabel lblTimKiem = new JLabel("Tìm nhanh (Tên/Mã):");
+        lblTimKiem.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        pnlSearch.add(lblTimKiem);
+        
+        txtTimKiem = new JTextField(25);
+        txtTimKiem.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        txtTimKiem.setPreferredSize(new Dimension(200, 30));
+        pnlSearch.add(txtTimKiem);
+        
+        btnTimKiemNC = new JButton("Tìm nâng cao");
+        btnTimKiemNC.setBackground(new Color(25, 118, 210));
+        btnTimKiemNC.setForeground(Color.blue);
+        btnTimKiemNC.setFocusPainted(false);
+        pnlSearch.add(btnTimKiemNC);
+        
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
         pnlCenter.add(pnlSearch, BorderLayout.NORTH);
 
         String[] cols = {"Mã Sách", "Tên Sách", "Tác Giả", "Thể Loại", "NXB", "Năm XB", "Trang", "Số Lượng", "Đơn Giá"};
         model = new DefaultTableModel(cols, 0);
         tblSach = new JTable(model);
         tblSach.setRowHeight(30);
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         
         // Sự kiện click vào bảng
         tblSach.addMouseListener(new MouseAdapter() {
             public void mouseClicked(MouseEvent e) {
                 fillForm();
+=======
+        tblSach.setFont(new Font("Segoe UI", Font.PLAIN, 13));
+        tblSach.getTableHeader().setFont(new Font("Segoe UI", Font.BOLD, 13));
+        tblSach.getTableHeader().setBackground(new Color(240, 240, 240));
+        
+        tblSach.addMouseListener(new MouseAdapter() {
+            public void mouseClicked(MouseEvent e) { fillForm(); }
+        });
+        // Bắt sự kiện khi dùng phím mũi tên Lên/Xuống trên bàn phím
+        tblSach.addKeyListener(new KeyAdapter() {
+            public void keyReleased(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_UP || e.getKeyCode() == KeyEvent.VK_DOWN) {
+                    fillForm(); 
+                }
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
             }
         });
         pnlCenter.add(new JScrollPane(tblSach), BorderLayout.CENTER);
         add(pnlCenter, BorderLayout.CENTER);
 
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         // --- 3. FORM NHẬP LIỆU (DƯỚI) ---
         JPanel pnlSouth = new JPanel(new BorderLayout());
         
         JPanel pnlInput = new JPanel(new GridLayout(4, 5, 10, 10)); // 4 dòng, 5 cột
         pnlInput.setBorder(new TitledBorder("Thông tin sách"));
         pnlInput.setPreferredSize(new Dimension(0, 200));
+=======
+        // --- 3. FORM NHẬP LIỆU (DƯỚI) - ĐÃ CẢI TIẾN GIAO DIỆN ---
+        JPanel pnlSouth = new JPanel(new BorderLayout(0, 15));
+        pnlSouth.setBackground(Color.WHITE);
+        
+        // Dùng GridLayout 3x3 nhưng với các JPanel con để cố định Label và Input sát nhau
+        JPanel pnlInput = new JPanel(new GridLayout(3, 3, 20, 15)); 
+        pnlInput.setBackground(Color.WHITE);
+        TitledBorder border = BorderFactory.createTitledBorder(
+                BorderFactory.createLineBorder(new Color(200, 200, 200)), "Thông tin chi tiết sách");
+        border.setTitleFont(new Font("Segoe UI", Font.BOLD, 14));
+        border.setTitleColor(new Color(25, 118, 210));
+        pnlInput.setBorder(BorderFactory.createCompoundBorder(border, new EmptyBorder(15, 15, 15, 15)));
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
         
         txtMa = new JTextField(); 
         txtTen = new JTextField();
@@ -86,6 +162,7 @@ public class QuanLySachPanel extends JPanel {
         cboTheLoai = new JComboBox<>();
         cboNXB = new JComboBox<>();
 
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         pnlInput.add(new JLabel("Mã Sách:")); pnlInput.add(txtMa);
         pnlInput.add(new JLabel("Tên Sách:")); pnlInput.add(txtTen);
         pnlInput.add(new JLabel("Đơn Giá:")); pnlInput.add(txtDonGia);
@@ -102,19 +179,49 @@ public class QuanLySachPanel extends JPanel {
         JPanel pnlBtn = new JPanel();
         btnThem = new JButton("Thêm"); btnSua = new JButton("Sửa"); 
         btnXoa = new JButton("Xóa"); btnLamMoi = new JButton("Làm mới");
+=======
+        // Gọi hàm hỗ trợ tạo từng ô ghép cặp (Label + Input)
+        pnlInput.add(createFormItem("Mã Sách:", txtMa));
+        pnlInput.add(createFormItem("Tên Sách:", txtTen));
+        pnlInput.add(createFormItem("Đơn Giá:", txtDonGia));
+        
+        pnlInput.add(createFormItem("Tác Giả:", cboTacGia));
+        pnlInput.add(createFormItem("Thể Loại:", cboTheLoai));
+        pnlInput.add(createFormItem("Số Lượng:", txtSoLuong));
+
+        pnlInput.add(createFormItem("Nhà XB:", cboNXB));
+        pnlInput.add(createFormItem("Năm XB:", txtNamXB));
+        pnlInput.add(createFormItem("Số Trang:", txtSoTrang));
+
+        // Các nút chức năng
+        JPanel pnlBtn = new JPanel(new FlowLayout(FlowLayout.CENTER, 15, 0));
+        pnlBtn.setBackground(Color.WHITE);
+        btnThem = createButton("Thêm", "them.png", new Color(46, 204, 113));
+        btnSua = createButton("Sửa", "sua.png", new Color(241, 196, 15));
+        btnXoa = createButton("Xóa", "xoa.png", new Color(231, 76, 60));
+        btnLamMoi = createButton("Làm mới", "lammoi.png", new Color(149, 165, 166));
+        
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
         pnlBtn.add(btnThem); pnlBtn.add(btnSua); pnlBtn.add(btnXoa); pnlBtn.add(btnLamMoi);
 
         pnlSouth.add(pnlInput, BorderLayout.CENTER);
         pnlSouth.add(pnlBtn, BorderLayout.SOUTH);
         add(pnlSouth, BorderLayout.SOUTH);
 
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         // --- 4. SỰ KIỆN NÚT BẤM ---
+=======
+        // --- SỰ KIỆN ---
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
         btnThem.addActionListener(e -> xuLyThem());
         btnSua.addActionListener(e -> xuLySua());
         btnXoa.addActionListener(e -> xuLyXoa());
         btnLamMoi.addActionListener(e -> lamMoi());
 
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         // Sự kiện gõ phím tìm kiếm nhanh trên RAM
+=======
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
         txtTimKiem.addKeyListener(new KeyAdapter() {
             public void keyReleased(KeyEvent e) {
                 ArrayList<SachDTO> list = sachBUS.timKiemTrenRAM(txtTimKiem.getText());
@@ -124,6 +231,7 @@ public class QuanLySachPanel extends JPanel {
         
         btnTimKiemNC.addActionListener(e -> {
             JOptionPane.showMessageDialog(this, "Chức năng Tìm kiếm Nâng cao sẽ mở ở Form khác!");
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
             // Bước tiếp theo tôi sẽ hướng dẫn bạn làm Form TimKiemNangCaoDialog
         });
     }
@@ -147,6 +255,76 @@ public class QuanLySachPanel extends JPanel {
         for (NhaXuatBanDTO nxb : listNXB) {
             cboNXB.addItem(nxb.getMaNXB() + " - " + nxb.getTenNXB());
         }
+=======
+        });
+    }
+
+    // =========================================================================
+    // CÁC HÀM HỖ TRỢ VẼ GIAO DIỆN (UI HELPERS)
+    // =========================================================================
+    
+    // Hàm này giúp dán sát Label và TextField lại với nhau cực đẹp
+    private JPanel createFormItem(String labelText, JComponent comp) {
+        JPanel panel = new JPanel(new BorderLayout(10, 0)); // Khoảng cách 10px giữa chữ và ô nhập
+        panel.setBackground(Color.WHITE);
+        
+        JLabel lbl = new JLabel(labelText);
+        lbl.setFont(new Font("Segoe UI", Font.BOLD, 13));
+        lbl.setPreferredSize(new Dimension(70, 30)); // Cố định chiều rộng để thẳng hàng nhau
+        
+        comp.setFont(new Font("Segoe UI", Font.PLAIN, 14));
+        comp.setPreferredSize(new Dimension(0, 30)); // Chiều cao đồng đều 30px
+        
+        panel.add(lbl, BorderLayout.WEST);
+        panel.add(comp, BorderLayout.CENTER);
+        return panel;
+    }
+
+    // Hàm trang trí nút bấm 
+    private JButton createButton(String text, String iconName, Color color) {
+        JButton btn = new JButton(text);
+        btn.setFont(new Font("Segoe UI", Font.BOLD, 14));
+        btn.setBackground(color);
+        btn.setForeground(Color.WHITE);
+        btn.setFocusPainted(false);
+        btn.setCursor(new Cursor(Cursor.HAND_CURSOR));
+        btn.setPreferredSize(new Dimension(115, 40)); // Tăng kích thước nút một chút để có chỗ chứa icon
+        
+        btn.setOpaque(true);
+        btn.setBorderPainted(false);
+        // --- ĐOẠN XỬ LÝ ICON ---
+        if (iconName != null && !iconName.isEmpty()) {
+            try {
+                java.net.URL resource = getClass().getResource("/img/" + iconName);
+                if (resource != null) {
+                    ImageIcon icon = new ImageIcon(resource);
+                    // Thu nhỏ ảnh về kích thước 20x20 cho đẹp
+                    Image img = icon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH);
+                    btn.setIcon(new ImageIcon(img));
+                    btn.setIconTextGap(8); // Khoảng cách giữa icon và chữ
+                }
+            } catch (Exception e) {
+                System.out.println("Không tải được icon: " + iconName);
+            }
+        }
+        
+        return btn;
+    }
+
+    // =========================================================================
+    // CÁC HÀM XỬ LÝ DỮ LIỆU
+    // =========================================================================
+
+    private void loadDuLieuLenComboBox() {
+        ArrayList<TacGiaDTO> listTG = new TacGiaDAO().selectAll();
+        for (TacGiaDTO tg : listTG) cboTacGia.addItem(tg.getMaTG() + " - " + tg.getHoTen());
+        
+        ArrayList<TheLoaiDTO> listTL = new TheLoaiDAO().selectAll();
+        for (TheLoaiDTO tl : listTL) cboTheLoai.addItem(tl.getMaTL() + " - " + tl.getTenTL());
+        
+        ArrayList<NhaXuatBanDTO> listNXB = new NhaXuatBanDAO().selectAll();
+        for (NhaXuatBanDTO nxb : listNXB) cboNXB.addItem(nxb.getMaNXB() + " - " + nxb.getTenNXB());
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
     }
 
     private void loadDataLenBang(ArrayList<SachDTO> list) {
@@ -166,7 +344,10 @@ public class QuanLySachPanel extends JPanel {
             txtMa.setText(model.getValueAt(row, 0).toString());
             txtTen.setText(model.getValueAt(row, 1).toString());
             
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
             // Xử lý chọn đúng ComboBox (Tìm item có chứa Mã)
+=======
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
             setComboBoxItem(cboTacGia, model.getValueAt(row, 2).toString());
             setComboBoxItem(cboTheLoai, model.getValueAt(row, 3).toString());
             setComboBoxItem(cboNXB, model.getValueAt(row, 4).toString());
@@ -175,10 +356,15 @@ public class QuanLySachPanel extends JPanel {
             txtSoTrang.setText(model.getValueAt(row, 6).toString());
             txtSoLuong.setText(model.getValueAt(row, 7).toString());
             
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
             // Xóa chữ VNĐ và dấu phẩy để hiển thị lại số gốc
             String gia = model.getValueAt(row, 8).toString().replace(" VNĐ", "").replace(",", "");
             txtDonGia.setText(gia);
             
+=======
+            String gia = model.getValueAt(row, 8).toString().replace(" VNĐ", "").replace(",", "");
+            txtDonGia.setText(gia);
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
             txtMa.setEditable(false);
         }
     }
@@ -192,7 +378,10 @@ public class QuanLySachPanel extends JPanel {
         }
     }
 
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
     // --- CÁC HÀM XỬ LÝ (CRUD) ---
+=======
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
     private SachDTO layThongTinForm() throws Exception {
         SachDTO s = new SachDTO();
         s.setMaSach(txtMa.getText());
@@ -202,7 +391,10 @@ public class QuanLySachPanel extends JPanel {
         s.setDonGia(Double.parseDouble(txtDonGia.getText()));
         s.setSoTrang(Integer.parseInt(txtSoTrang.getText()));
         
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         // Cắt chuỗi để chỉ lấy MÃ (VD: "TG01 - Nam Cao" -> lấy "TG01")
+=======
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
         s.setMaTG(cboTacGia.getSelectedItem().toString().split(" - ")[0]);
         s.setMaTL(cboTheLoai.getSelectedItem().toString().split(" - ")[0]);
         s.setMaNXB(cboNXB.getSelectedItem().toString().split(" - ")[0]);
@@ -215,7 +407,11 @@ public class QuanLySachPanel extends JPanel {
             JOptionPane.showMessageDialog(this, sachBUS.themSach(s));
             loadDataLenBang(sachBUS.getList());
             lamMoi();
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         } catch (Exception e) { JOptionPane.showMessageDialog(this, "Vui lòng kiểm tra lại số liệu!"); }
+=======
+        } catch (Exception e) { JOptionPane.showMessageDialog(this, "Vui lòng kiểm tra lại số liệu nhập!"); }
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
     }
 
     private void xuLySua() {
@@ -223,13 +419,21 @@ public class QuanLySachPanel extends JPanel {
             SachDTO s = layThongTinForm();
             JOptionPane.showMessageDialog(this, sachBUS.suaSach(s));
             loadDataLenBang(sachBUS.getList());
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         } catch (Exception e) { JOptionPane.showMessageDialog(this, "Vui lòng kiểm tra lại số liệu!"); }
+=======
+        } catch (Exception e) { JOptionPane.showMessageDialog(this, "Vui lòng kiểm tra lại số liệu nhập!"); }
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
     }
 
     private void xuLyXoa() {
         String ma = txtMa.getText();
         if (ma.isEmpty()) return;
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
         if (JOptionPane.showConfirmDialog(this, "Xóa sách " + ma + "?") == JOptionPane.YES_OPTION) {
+=======
+        if (JOptionPane.showConfirmDialog(this, "Xóa sách " + ma + "?", "Xác nhận", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION) {
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
             JOptionPane.showMessageDialog(this, sachBUS.xoaSach(ma));
             loadDataLenBang(sachBUS.getList());
             lamMoi();
@@ -245,6 +449,10 @@ public class QuanLySachPanel extends JPanel {
         if(cboNXB.getItemCount() > 0) cboNXB.setSelectedIndex(0);
         tblSach.clearSelection();
     }
+<<<<<<< HEAD:QuanLyThuVien-JAVA-/DOAN/src/gui/QuanLySachPanel.java
     // --- HÀM MAIN TẠM THỜI ĐỂ CHẠY THỬ ĐỘC LẬP ---
   
 }
+=======
+}
+>>>>>>> 93620ce (Thêm chức năng Quản lý Sách, cập nhật giao diện):DOAN/src/gui/QuanLySachPanel.java
